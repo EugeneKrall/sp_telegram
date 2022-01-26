@@ -10,18 +10,19 @@
 select
     {{ dbt_utils.surrogate_key([
         '_id',
-        'text',
         'type',
+        'price',
         'bot_id',
         'status',
+         boolean_to_string('is_paid'),
         'user_id',
-        'telegram',
+        'campaign_id',
+        'currency',
         'direction',
-        'edited_at',
         'contact_id',
         'created_at',
         'updated_at',
-        'campaign_id',
+        'price_country_code',
     ]) }} as _airbyte_messages_hashid,
     tmp.*
 from {{ ref('messages_ab2') }} tmp
